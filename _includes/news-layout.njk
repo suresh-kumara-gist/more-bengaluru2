@@ -1,40 +1,168 @@
----
-layout: base.njk
----
-<article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-    {% if image %}
-    <div class="h-96 overflow-hidden">
-        {% image image, title, "100vw" %}
-    </div>
-    {% endif %}
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {{ site.name }}</title>
     
-    <div class="p-8">
-        <header class="mb-8">
-            <h1 class="text-4xl font-bold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">{{ title }}</h1>
-            <div class="flex items-center text-gray-600 mb-4">
-                <time datetime="{{ date | isoDate }}" class="mr-4">{{ date | postDate }}</time>
-                {% if categories %}
-                <div class="flex space-x-2">
-                    {% for category in categories %}
-                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">{{ category }}</span>
-                    {% endfor %}
+    <!-- Tailwind CSS -->
+    <link href="/src/css/style.css" rel="stylesheet">
+    
+    <!-- Google Fonts for Kannada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-blue-800">
+                        <a href="/{{ locale }}/">{{ site.name }}</a>
+                    </h1>
+                    <p class="text-gray-600 hidden md:block">{{ site.description }}</p>
                 </div>
-                {% endif %}
-            </div>
-        </header>
 
-        <div class="prose prose-lg max-w-none {% if locale == 'kn' %}kannada-text{% endif %}">
-            {{ content | safe }}
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-4">
+                    {% if locale == "en" %}
+                        <a href="/kn{{ page.url | replace('/en/', '/') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+                            {{ site.language_switch }}
+                        </a>
+                    {% else %}
+                        <a href="/en{{ page.url | replace('/kn/', '/') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-200">
+                            {{ site.language_switch }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="mt-4">
+                <ul class="flex space-x-6 overflow-x-auto">
+                    <li><a href="/{{ locale }}/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_home }}</a></li>
+                    <li><a href="/{{ locale }}/news/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_news }}</a></li>
+                    <li><a href="/{{ locale }}/bbmp/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_bbmp }}</a></li>
+                    <li><a href="/{{ locale }}/corporators/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_corporators }}</a></li>
+                    <li><a href="/{{ locale }}/civic-issues/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_civic_issues }}</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        {% if tags %}
-        <footer class="mt-8 pt-8 border-t border-gray-200">
-            <div class="flex flex-wrap gap-2">
-                {% for tag in tags %}
-                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">#{{ tag }}</span>
-                {% endfor %}
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+            {% if image %}
+            <div class="h-96 overflow-hidden">
+                {% image image, title, "(min-width: 1200px) 1200px, 100vw" %}
             </div>
-        </footer>
-        {% endif %}
-    </div>
-</article>
+            {% endif %}
+            
+            <div class="p-8">
+                <header class="mb-8 border-b border-gray-200 pb-6">
+                    <h1 class="text-4xl font-bold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">{{ title }}</h1>
+                    
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-600 mb-4 gap-2">
+                        <div class="flex items-center space-x-4">
+                            <time datetime="{{ date | isoDate }}" class="{% if locale == 'kn' %}kannada-text{% endif %}">
+                                {% if locale == 'en' %}
+                                    {{ date | postDate }}
+                                {% else %}
+                                    {{ date | postDateKannada }}
+                                {% endif %}
+                            </time>
+                            
+                            {% if categories %}
+                            <div class="flex flex-wrap gap-2">
+                                {% for category in categories %}
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                                    {{ category }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 text-sm">
+                            <span class="{% if locale == 'kn' %}kannada-text{% endif %}">
+                                {% if locale == 'en' %}Share:{% else %}ಹಂಚಿಕೊಳ್ಳಿ:{% endif %}
+                            </span>
+                            <button class="text-blue-600 hover:text-blue-800 transition duration-200" onclick="shareOnTwitter()">
+                                Twitter
+                            </button>
+                            <span>•</span>
+                            <button class="text-blue-600 hover:text-blue-800 transition duration-200" onclick="shareOnWhatsApp()">
+                                WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                    
+                    {% if summary %}
+                    <p class="text-xl text-gray-700 leading-relaxed {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {{ summary }}
+                    </p>
+                    {% endif %}
+                </header>
+
+                <div class="prose prose-lg max-w-none {% if locale == 'kn' %}kannada-text prose-headings:kannada-text prose-p:kannada-text prose-li:kannada-text{% endif %}">
+                    {{ content | safe }}
+                </div>
+
+                {% if tags %}
+                <footer class="mt-12 pt-8 border-t border-gray-200">
+                    <h3 class="text-lg font-semibold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {% if locale == 'en' %}Tags{% else %}ಟ್ಯಾಗ್ಗಳು{% endif %}
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        {% for tag in tags %}
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition duration-200">
+                            #{{ tag }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </footer>
+                {% endif %}
+                
+                <!-- Related News Section -->
+                <div class="mt-12 pt-8 border-t border-gray-200">
+                    <h3 class="text-2xl font-bold mb-6 {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {% if locale == 'en' %}Related News{% else %}ಸಂಬಂಧಿತ ವಾರ್ತೆಗಳು{% endif %}
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- This would be populated with related articles based on categories/tags -->
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <p class="text-gray-600 {% if locale == 'kn' %}kannada-text{% endif %}">
+                                {% if locale == 'en' %}More news coming soon...{% else %}ಹೆಚ್ಚಿನ ವಾರ್ತೆಗಳು ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿವೆ...{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 {{ site.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    function shareOnTwitter() {
+        const text = "{{ title }}";
+        const url = window.location.href;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+    }
+
+    function shareOnWhatsApp() {
+        const text = "{{ title }} - " + window.location.href;
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+    </script>
+</body>
+</html>
