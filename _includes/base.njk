@@ -1,0 +1,50 @@
+---
+layout: base.njk
+---
+<article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+    {% if image %}
+    <div class="h-96 overflow-hidden">
+        {% image image, title, "100vw" %}
+    </div>
+    {% endif %}
+    
+    <div class="p-8">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">{{ title }}</h1>
+            <div class="flex items-center text-gray-600 mb-4">
+                <time datetime="{{ date | isoDate }}" class="mr-4">{{ date | postDate }}</time>
+                {% if categories %}
+                <div class="flex space-x-2">
+                    {% for category in categories %}
+                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">{{ category }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </header>
+        <!-- Navigation -->
+        <nav class="mt-4">
+            <ul class="flex space-x-6 overflow-x-auto">
+                <li><a href="/{{ locale }}/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_home }}</a></li>
+                <li><a href="/{{ locale }}/news/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_news }}</a></li>
+                <li><a href="/{{ locale }}/bbmp/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_bbmp }}</a></li>
+                <li><a href="/{{ locale }}/corporators/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_corporators }}</a></li>
+                <li><a href="/{{ locale }}/civic-issues/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_civic_issues }}</a></li>
+            </ul>
+        </nav>
+
+        <div class="prose prose-lg max-w-none {% if locale == 'kn' %}kannada-text{% endif %}">
+            {{ content | safe }}
+        </div>
+
+        {% if tags %}
+        <footer class="mt-8 pt-8 border-t border-gray-200">
+            <div class="flex flex-wrap gap-2">
+                {% for tag in tags %}
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">#{{ tag }}</span>
+                {% endfor %}
+            </div>
+        </footer>
+        {% endif %}
+    </div>
+</article>

@@ -1,0 +1,84 @@
+---
+layout: base.njk
+title: ವಾರ್ತೆಗಳು
+locale: kn
+pagination:
+  data: collections.news_kn
+  size: 10
+  alias: news
+permalink: "kn/news/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+
+<section class="max-w-6xl mx-auto">
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold mb-4 kannada-text">ಬೆಂಗಳೂರಿನ ತಾಜಾ ವಾರ್ತೆಗಳು</h1>
+        <p class="text-xl text-gray-600 kannada-text">ಗ್ರೇಟರ್ ಬೆಂಗಳೂರಿನ ತಾಜಾ ಅಭಿವೃದ್ಧಿಗಳು, ಘಟನೆಗಳು ಮತ್ತು ಘೋಷಣೆಗಳೊಂದಿಗೆ ನವೀಕರಿಸಲ್ಪಡಿರಿ</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {% for article in news %}
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 fade-in">
+            {% if article.data.image %}
+            <div class="h-48 overflow-hidden">
+                {% image article.data.image, article.data.title, "400px" %}
+            </div>
+            {% else %}
+            <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                <span class="text-white text-lg font-semibold kannada-text">ಇಂಕಾ ಬೆಂಗಳೂರು</span>
+            </div>
+            {% endif %}
+            
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <time class="text-sm text-gray-500 kannada-text" datetime="{{ article.date | isoDate }}">
+                        {{ article.date | postDateKannada }}
+                    </time>
+                    {% if article.data.categories %}
+                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded kannada-text">
+                        {{ article.data.categories[0] }}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <h2 class="text-xl font-bold mb-3 line-clamp-2 kannada-text">
+                    <a href="{{ article.url }}" class="text-gray-900 hover:text-green-600 transition duration-200">
+                        {{ article.data.title }}
+                    </a>
+                </h2>
+                
+                <p class="text-gray-600 mb-4 line-clamp-3 kannada-text">
+                    {{ article.data.summary }}
+                </p>
+                
+                <a href="{{ article.url }}" class="inline-flex items-center text-green-600 font-semibold hover:text-green-800 transition duration-200 kannada-text">
+                    ಇನ್ನಷ್ಟು ಓದಿ
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination.pages.length > 1 %}
+    <nav class="flex justify-center items-center space-x-2 mb-12">
+        {% if pagination.previousPageLink %}
+        <a href="{{ pagination.previousPageLink }}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200 kannada-text">
+            ಹಿಂದಿನ
+        </a>
+        {% endif %}
+
+        <span class="text-gray-600 kannada-text">
+            ಪುಟ {{ pagination.pageNumber + 1 }} / {{ pagination.pages.length }}
+        </span>
+
+        {% if pagination.nextPageLink %}
+        <a href="{{ pagination.nextPageLink }}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200 kannada-text">
+            ಮುಂದಿನ
+        </a>
+        {% endif %}
+    </nav>
+    {% endif %}
+</section>

@@ -1,0 +1,84 @@
+---
+layout: base.njk
+title: News
+locale: en
+pagination:
+  data: collections.news_en
+  size: 10
+  alias: news
+permalink: "en/news/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+
+<section class="max-w-6xl mx-auto">
+    <header class="mb-12 text-center">
+        <h1 class="text-4xl font-bold mb-4">Latest News from Bengaluru</h1>
+        <p class="text-xl text-gray-600">Stay updated with the latest developments, events, and announcements from Greater Bengaluru</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {% for article in news %}
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 fade-in">
+            {% if article.data.image %}
+            <div class="h-48 overflow-hidden">
+                {% image article.data.image, article.data.title, "400px" %}
+            </div>
+            {% else %}
+            <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <span class="text-white text-lg font-semibold">Inka Bengaluru</span>
+            </div>
+            {% endif %}
+            
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                    <time class="text-sm text-gray-500" datetime="{{ article.date | isoDate }}">
+                        {{ article.date | postDate }}
+                    </time>
+                    {% if article.data.categories %}
+                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+                        {{ article.data.categories[0] }}
+                    </span>
+                    {% endif %}
+                </div>
+                
+                <h2 class="text-xl font-bold mb-3 line-clamp-2">
+                    <a href="{{ article.url }}" class="text-gray-900 hover:text-blue-600 transition duration-200">
+                        {{ article.data.title }}
+                    </a>
+                </h2>
+                
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                    {{ article.data.summary }}
+                </p>
+                
+                <a href="{{ article.url }}" class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition duration-200">
+                    Read More
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination.pages.length > 1 %}
+    <nav class="flex justify-center items-center space-x-2 mb-12">
+        {% if pagination.previousPageLink %}
+        <a href="{{ pagination.previousPageLink }}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200">
+            Previous
+        </a>
+        {% endif %}
+
+        <span class="text-gray-600">
+            Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}
+        </span>
+
+        {% if pagination.nextPageLink %}
+        <a href="{{ pagination.nextPageLink }}" class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition duration-200">
+            Next
+        </a>
+        {% endif %}
+    </nav>
+    {% endif %}
+</section>

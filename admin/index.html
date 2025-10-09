@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inka Bengaluru Content Manager</title>
+  
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <!-- Style the admin panel -->
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Initialize Decap CMS
+    CMS.init();
+    
+    // Optional: Register custom preview styles
+    CMS.registerPreviewStyle('/src/css/style.css');
+  </script>
+</body>
+</html>

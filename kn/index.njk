@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: ಮುಖಪುಟ
+locale: kn
+---
+
+<!-- Hero Section -->
+<section class="bg-green-600 text-white py-16 rounded-lg mb-12 fade-in">
+    <div class="text-center">
+        <h2 class="text-4xl font-bold mb-4 kannada-text">ಇಂಕಾ ಬೆಂಗಳೂರಿಗೆ ಸ್ವಾಗತ</h2>
+        <p class="text-xl opacity-90 kannada-text">ಗ್ರೇಟರ್ ಬೆಂಗಳೂರಿನ ತಾಜಾ ವಾರ್ತೆಗಳು ಮತ್ತು ನವೀಕರಣಗಳ ಮೂಲ</p>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8 border-b-2 border-green-200 pb-2 kannada-text">{{ site.latest_news }}</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- News Card 1 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 kannada-text">ವೈಟ್ಫೀಲ್ಡ್ನಲ್ಲಿ ಹೊಸ ಮೆಟ್ರೋ ಲೈನ್ ನಿರ್ಮಾಣ ಪ್ರಾರಂಭ</h3>
+                <p class="text-gray-600 mb-4 kannada-text">ಬಹಳಕಾಲದಿಂದ ನಿರೀಕ್ಷಿತವಿದ್ದ ವೈಟ್ಫೀಲ್ಡ್ ವಿಸ್ತರಣೆ ಭೂವಿನಿಯೋಗ ಸಮಾರಂಭದೊಂದಿಗೆ ಅಧಿಕೃತವಾಗಿ ನಿರ್ಮಾಣವನ್ನು ಪ್ರಾರಂಭಿಸಿದೆ.</p>
+                <a href="/kn/news/metro-whitefield/" class="text-green-600 font-semibold hover:text-green-800 kannada-text">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+
+        <!-- News Card 2 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 kannada-text">ಬಿಬಿಎಂಪಿ ಹೊಸ ತ್ಯಾಜ್ಯ ನಿರ್ವಹಣ ಉಪಕ್ರಮವನ್ನು ಘೋಷಿಸಿದೆ</h3>
+                <p class="text-gray-600 mb-4 kannada-text">ಬೃಹತ್ ಬೆಂಗಳೂರು ಮಹಾನಗರ ಪಾಲಿಕೆ ನಗರದಾದ್ಯಂತ ಹೊಸ ವಿಂಗಡಣೆ ಮತ್ತು ಮರುಬಳಕೆ ಕಾರ್ಯಕ್ರಮವನ್ನು ಪ್ರಾರಂಭಿಸಿದೆ.</p>
+                <a href="/kn/news/bbmp-waste-management/" class="text-green-600 font-semibold hover:text-green-800 kannada-text">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+
+        <!-- News Card 3 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 kannada-text">ಬೆಂಗಳೂರಿನಾದ್ಯಂತ ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಆಚರಣೆಗಳು</h3>
+                <p class="text-gray-600 mb-4 kannada-text">ಕರ್ನಾಟಕದ ರಚನಾ ದಿನವನ್ನು ಆಚರಿಸಲು ನಗರದಾದ್ಯಂತ ವಿವಿಧ ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳು ಮತ್ತು ಈವೆಂಟ್ಗಳನ್ನು ಏರ್ಪಡಿಸಲಾಗುತ್ತಿದೆ.</p>
+                <a href="/kn/news/rajyotsava-celebrations/" class="text-green-600 font-semibold hover:text-green-800 kannada-text">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+    </div>
+</section>

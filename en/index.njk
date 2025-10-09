@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: Home
+locale: en
+---
+
+<!-- Hero Section -->
+<section class="bg-blue-600 text-white py-16 rounded-lg mb-12 fade-in">
+    <div class="text-center">
+        <h2 class="text-4xl font-bold mb-4">Welcome to Inka Bengaluru</h2>
+        <p class="text-xl opacity-90">Your source for the latest news and updates from Greater Bengaluru</p>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-200 pb-2">{{ site.latest_news }}</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- News Card 1 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">New Metro Line Construction Begins in Whitefield</h3>
+                <p class="text-gray-600 mb-4">The much-awaited metro extension to Whitefield has officially commenced construction with a groundbreaking ceremony.</p>
+                <a href="/en/news/metro-whitefield/" class="text-blue-600 font-semibold hover:text-blue-800">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+
+        <!-- News Card 2 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">BBMP Announces New Waste Management Initiative</h3>
+                <p class="text-gray-600 mb-4">The Bruhat Bengaluru Mahanagara Palike has launched a new segregation and recycling program across the city.</p>
+                <a href="/en/news/bbmp-waste-management/" class="text-blue-600 font-semibold hover:text-blue-800">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+
+        <!-- News Card 3 -->
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <div class="h-48 bg-gray-300">
+                <!-- Image will go here -->
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Kannada Rajyotsava Celebrations Across Bengaluru</h3>
+                <p class="text-gray-600 mb-4">Various cultural programs and events are being organized throughout the city to celebrate Karnataka's formation day.</p>
+                <a href="/en/news/rajyotsava-celebrations/" class="text-blue-600 font-semibold hover:text-blue-800">
+                    {{ site.read_more }} →
+                </a>
+            </div>
+        </article>
+    </div>
+</section>
