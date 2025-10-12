@@ -1,25 +1,43 @@
 const Image = require("@11ty/eleventy-img");
+const path = require("path");
+const fs = require("fs");
 
 async function imageShortcode(src, alt, sizes = "100vw") {
   if(!alt) {
     throw new Error(`Missing \`alt\` on responsive image from: ${src}`);
   }
 
-  let metadata = await Image(src, {
-    widths: [400, 800, 1200],
-    formats: ['avif', 'webp', 'jpeg'],
-    outputDir: './_site/img/',
-    urlPath: '/img/'
-  });
+  // Check if the image file exists
+  let imagePath = path.join(__dirname, src);
+  if (!fs.existsSync(imagePath)) {
+    // Return a placeholder if image doesn't exist
+    console.warn(`Image not found: ${src}, using placeholder`);
+    return `<div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white">
+              <span>Image: ${alt}</span>
+            </div>`;
+  }
 
-  let imageAttributes = {
-    alt,
-    sizes,
-    loading: "lazy",
-    decoding: "async",
-  };
+  try {
+    let metadata = await Image(src, {
+      widths: [400, 800, 1200],
+      formats: ['avif', 'webp', 'jpeg'],
+      outputDir: './_site/img/',
+      urlPath: '/img/'
+    });
 
-  return Image.generateHTML(metadata, imageAttributes);
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    return Image.generateHTML(metadata, imageAttributes);
+  } catch (error) {
+    console.warn(`Error processing image ${src}:`, error.message);
+    // Fallback to simple image tag
+    return `<img src="${src}" alt="${alt}" class="w-full h-48 object-cover" loading="lazy">`;
+  }
 }
 
 // Date filter for formatting
@@ -53,6 +71,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLiquidShortcode("image", imageShortcode);
   eleventyConfig.addJavaScriptFunction("image", imageShortcode);
 
+  // Add a simple image shortcode that doesn't process images
+  eleventyConfig.addShortcode("simpleImg", function(src, alt, classes = "w-full h-48 object-cover") {
+    if (!src || src === '/src/images/') {
+      return `<div class="h-48 bg-gradient-to-br from-gray-400 to-gray-600 flex items-center justify-center text-white">
+                <span>${alt || 'Image'}</span>
+              </div>`;
+    }
+    return `<img src="${src}" alt="${alt || ''}" class="${classes}" loading="lazy">`;
+  });
+
   // Add date filters
   eleventyConfig.addFilter("postDate", postDate);
   eleventyConfig.addFilter("postDateKannada", postDateKannada);
@@ -82,11 +110,6 @@ module.exports = function(eleventyConfig) {
   // Create corporators collection
   eleventyConfig.addCollection("corporators", function(collection) {
     return collection.getFilteredByGlob("_corporators/*.md");
-  });
-
-  // Simple image shortcode for testing
-  eleventyConfig.addShortcode("simpleImage", function(src, alt) {
-    return `<img src="${src}" alt="${alt}" class="w-full h-48 object-cover" loading="lazy">`;
   });
 
   // Set input and output directories
