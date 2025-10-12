@@ -12,7 +12,7 @@ tags:
   - whitefield
   - infrastructure
   - BMRCL
-permalink: /kn/news/{{ title | slug }}/index.html
+permalink: /kn/news/{{ title | slug }}/
 ---
 
 # ಬೆಂಗಳೂರಿಗೆ ಪ್ರಮುಖ ಮೂಲಸೌಕರ್ಯ ಮೈಲಿಗಲ್ಲು

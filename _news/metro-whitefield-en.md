@@ -12,7 +12,7 @@ tags:
   - whitefield
   - infrastructure
   - BMRCL
-permalink: /en/news/{{ title | slug }}/index.html
+permalink: /en/news/{{ title | slug }}/
 ---
 
 # Major Infrastructure Milestone for Bengaluru

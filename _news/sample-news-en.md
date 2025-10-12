@@ -12,7 +12,7 @@ tags:
   - infrastructure
   - BMRCL
 layout: news-simple.njk
-permalink: /en/news/{{ title | slug }}/index.html
+permalink: /en/simplenews/{{ title | slug }}/
 ---
 
 # Major Infrastructure Milestone for Bengaluru

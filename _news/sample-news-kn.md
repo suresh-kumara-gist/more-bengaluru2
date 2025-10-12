@@ -12,7 +12,7 @@ tags:
   - infrastructure
   - BMRCL
 layout: news-simple.njk
-permalink: /kn/news/{{ title | slug }}/index2.html
+permalink: /kn/simplenews/{{ title | slug }}/
 ---
 
 # ಬೆಂಗಳೂರಿಗೆ ಪ್ರಮುಖ ಮೂಲಸೌಕರ್ಯ ಮೈಲಿಗಲ್ಲು
