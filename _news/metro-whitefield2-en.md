@@ -2,7 +2,7 @@
 title: "Your News Title"
 lang: en
 date: 2024-01-15
-image: /src/images/your-image.jpg
+image: /src/images/your-image2.jpg
 summary: "Your news summary"
 categories:
   - News
