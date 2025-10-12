@@ -118,9 +118,9 @@ module.exports = function(eleventyConfig) {
   });
 
   // Add custom filters
-  eleventyConfig.addFilter("isoDate", function(date) {
-    return date.toISOString().split('T')[0];
-  });
+  // eleventyConfig.addFilter("isoDate", function(date) {
+  //   return date.toISOString().split('T')[0];
+  // });
 
   // Set input and output directories
   return {
