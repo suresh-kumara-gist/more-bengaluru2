@@ -1,5 +1,5 @@
 ---
-title: "New Metro Line Construction Begins in Whitefield"
+title: "New Metro Line Construction Begins in Whitefield2"
 lang: en
 date: 2024-01-15
 summary: "The much-awaited metro extension to Whitefield has officially commenced construction with a groundbreaking ceremony attended by city officials."
