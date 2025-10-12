@@ -117,6 +117,11 @@ module.exports = function(eleventyConfig) {
     return `<img src="${src}" alt="${alt}" class="w-full h-48 object-cover" loading="lazy">`;
   });
 
+  // Add custom filters
+  eleventyConfig.addFilter("isoDate", function(date) {
+    return date.toISOString().split('T')[0];
+  });
+
   // Set input and output directories
   return {
     dir: {
