@@ -47,4 +47,69 @@ layout: base.njk
         </footer>
         {% endif %}
     </div>
-</article>
+</article><!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {{ site.name }}</title>
+    
+    <!-- Tailwind CSS -->
+    <link href="/src/css/style.css" rel="stylesheet">
+    
+    <!-- Google Fonts for Kannada -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-blue-800">{{ site.name }}</h1>
+                    <p class="text-gray-600 hidden md:block">{{ site.description }}</p>
+                </div>
+
+                <!-- Language Switcher -->
+                <div class="flex items-center space-x-4">
+                    {% if locale == "en" %}
+                        <a href="/kn{{ page.url | replace('/en/', '/') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+                            {{ site.language_switch }}
+                        </a>
+                    {% else %}
+                        <a href="/en{{ page.url | replace('/kn/', '/') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-200">
+                            {{ site.language_switch }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="mt-4">
+                <ul class="flex space-x-6 overflow-x-auto">
+                    <li><a href="/{{ locale }}/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_home }}</a></li>
+                    <li><a href="/{{ locale }}/news/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_news }}</a></li>
+                    <li><a href="/{{ locale }}/bbmp/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_bbmp }}</a></li>
+                    <li><a href="/{{ locale }}/corporators/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_corporators }}</a></li>
+                    <li><a href="/{{ locale }}/civic-issues/" class="text-gray-700 hover:text-blue-600 font-medium">{{ site.nav_civic_issues }}</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        {{ content | safe }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 {{ site.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
