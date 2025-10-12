@@ -2,7 +2,6 @@
 title: "ವೈಟ್ಫೀಲ್ಡ್ನಲ್ಲಿ ಹೊಸ ಮೆಟ್ರೋ ಲೈನ್ ನಿರ್ಮಾಣ ಪ್ರಾರಂಭ"
 lang: kn
 date: 2024-01-15
-image: /src/images/metro-construction.jpg
 summary: "ಬಹಳಕಾಲದಿಂದ ನಿರೀಕ್ಷಿತವಿದ್ದ ವೈಟ್ಫೀಲ್ಡ್ ಮೆಟ್ರೋ ವಿಸ್ತರಣೆ ನಗರ ಅಧಿಕಾರಿಗಳು ಭಾಗವಹಿಸಿದ ಭೂವಿನಿಯೋಗ ಸಮಾರಂಭದೊಂದಿಗೆ ಅಧಿಕೃತವಾಗಿ ನಿರ್ಮಾಣವನ್ನು ಪ್ರಾರಂಭಿಸಿದೆ."
 categories:
   - Development
@@ -12,6 +11,7 @@ tags:
   - whitefield
   - infrastructure
   - BMRCL
+layout: news-simple.njk
 permalink: /kn/news/{{ title | slug }}/index.html
 ---
 
@@ -49,7 +49,5 @@ permalink: /kn/news/{{ title | slug }}/index.html
 10. ಚನ್ನಸಂದ್ರ
 11. ವೈಟ್ಫೀಲ್ಡ್
 12. ಹೋಪ್ಫಾರ್ಮ್ ಸರ್ಕಲ್
-
-![ಮೆಟ್ರೋ ನಕ್ಷೆ](/src/images/metro-map.jpg)
 
 ಈ ಯೋಜನೆಯು ನಮ್ಮ ಮೆಟ್ರೋದ 2ನೇ ಹಂತದ ವಿಸ್ತರಣೆಯ ಭಾಗವಾಗಿದೆ, ಇದು ಬೆಂಗಳೂರಿನ ಸಾರ್ವಜನಿಕ ಸಾರಿಗೆ ವ್ಯವಸ್ಥೆಯನ್ನು ಹೆಚ್ಚು ವ್ಯಾಪಕವಾಗಿಸಲು ಮತ್ತು ಎಲ್ಲಾ ನಿವಾಸಿಗಳಿಗೆ ಪ್ರವೇಶಿಸಲು ಉದ್ದೇಶಿಸಿದೆ.

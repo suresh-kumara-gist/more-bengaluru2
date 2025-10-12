@@ -1,7 +1,7 @@
 ---
 title: "Your News Title"
 lang: en
-date: 2024-01-15T10:00:00.000Z
+date: 2024-01-15
 image: /src/images/your-image.jpg
 summary: "Your news summary"
 categories:

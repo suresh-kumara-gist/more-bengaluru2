@@ -1,7 +1,7 @@
 ---
 title: "New Metro Line Construction Begins in Whitefield"
 lang: en
-date: 2024-01-15T10:00:00.000Z
+date: 2024-01-15
 image: /src/images/metro-construction.jpg
 summary: "The much-awaited metro extension to Whitefield has officially commenced construction with a groundbreaking ceremony attended by city officials."
 categories:

@@ -17,8 +17,9 @@ locale: en
     <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-200 pb-2">{{ site.latest_news }}</h2>
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for article in collections.news_en | reverse | slice(0, 3) %}
+        {% for article in collections.news_en | slice(0, 3) %}
         <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+            <!-- Simple gradient placeholder -->
             <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
                 <span class="text-white text-lg font-semibold">Inka Bengaluru</span>
             </div>
@@ -49,10 +50,6 @@ locale: en
         {% endfor %}
     </div>
 </section>
-
-{% if article.data.image %}
-  {% simpleImage article.data.image, article.data.title %}
-{% endif %}
 
 <!-- Quick Links Section -->
 <section class="mb-12">
