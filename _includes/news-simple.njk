@@ -1,48 +1,98 @@
----
-layout: base.njk
----
-<article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden fade-in">
-    {% if image %}
-    <div class="h-96 overflow-hidden">
-        {% image image, title, "(min-width: 1200px) 1200px, 100vw" %}
-    </div>
-    {% endif %}
-    
-    <div class="p-8">
-        <header class="mb-8 border-b border-gray-200 pb-6">
-            <h1 class="text-4xl font-bold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">{{ title }}</h1>
-            
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-gray-600 mb-4 gap-2">
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {% if locale == 'en' %}Inka Bengaluru{% else %}ಇಂಕಾ ಬೆಂಗಳೂರು{% endif %}</title>
+    <link href="/src/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
-                    <time datetime="{{ date | isoDate }}" class="{% if locale == 'kn' %}kannada-text{% endif %}">
-                        {% if locale == 'en' %}
-                            {{ date | postDate }}
-                        {% else %}
-                            {{ date | postDateKannada }}
-                        {% endif %}
-                    </time>
+                    <h1 class="text-2xl font-bold {% if locale == 'en' %}text-blue-800{% else %}text-green-800 kannada-text{% endif %}">
+                        <a href="/{{ locale }}/">
+                            {% if locale == 'en' %}Inka Bengaluru{% else %}ಇಂಕಾ ಬೆಂಗಳೂರು{% endif %}
+                        </a>
+                    </h1>
+                </div>
+                {% if locale == "en" %}
+                    <a href="/kn{{ page.url | replace('/en/', '/') }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+                        ಕನ್ನಡ
+                    </a>
+                {% else %}
+                    <a href="/en{{ page.url | replace('/kn/', '/') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-200">
+                        English
+                    </a>
+                {% endif %}
+            </div>
+            <nav class="mt-4">
+                <ul class="flex space-x-6 overflow-x-auto">
+                    <li><a href="/{{ locale }}/" class="text-gray-700 hover:{% if locale == 'en' %}text-blue-600{% else %}text-green-600{% endif %} font-medium {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {% if locale == 'en' %}Home{% else %}ಮುಖಪುಟ{% endif %}
+                    </a></li>
+                    <li><a href="/{{ locale }}/news/" class="text-gray-700 hover:{% if locale == 'en' %}text-blue-600{% else %}text-green-600{% endif %} font-medium {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {% if locale == 'en' %}News{% else %}ವಾರ್ತೆಗಳು{% endif %}
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <article class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden fade-in">
+            {% if image %}
+            <div class="h-96 overflow-hidden">
+                {% image image, title, "(min-width: 1200px) 1200px, 100vw" %}
+            </div>
+            {% endif %}
+            
+            <div class="p-8">
+                <header class="mb-8 border-b border-gray-200 pb-6">
+                    <h1 class="text-4xl font-bold mb-4 {% if locale == 'kn' %}kannada-text{% endif %}">{{ title }}</h1>
                     
-                    {% if categories %}
-                    <div class="flex flex-wrap gap-2">
-                        {% for category in categories %}
-                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {{ category }}
-                        </span>
-                        {% endfor %}
+                    <div class="flex items-center space-x-4 text-gray-600 mb-4">
+                        <time datetime="{{ date | isoDate }}" class="{% if locale == 'kn' %}kannada-text{% endif %}">
+                            {% if locale == 'en' %}
+                                {{ date | postDate }}
+                            {% else %}
+                                {{ date | postDateKannada }}
+                            {% endif %}
+                        </time>
+                        
+                        {% if categories %}
+                        <div class="flex flex-wrap gap-2">
+                            {% for category in categories %}
+                            <span class="{% if locale == 'en' %}bg-blue-100 text-blue-800{% else %}bg-green-100 text-green-800{% endif %} px-3 py-1 rounded-full text-sm font-medium">
+                                {{ category }}
+                            </span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </div>
+                    
+                    {% if summary %}
+                    <p class="text-xl text-gray-700 leading-relaxed {% if locale == 'kn' %}kannada-text{% endif %}">
+                        {{ summary }}
+                    </p>
                     {% endif %}
+                </header>
+
+                <div class="prose prose-lg max-w-none {% if locale == 'kn' %}kannada-text{% endif %}">
+                    {{ content | safe }}
                 </div>
             </div>
-            
-            {% if summary %}
-            <p class="text-xl text-gray-700 leading-relaxed {% if locale == 'kn' %}kannada-text{% endif %}">
-                {{ summary }}
-            </p>
-            {% endif %}
-        </header>
+        </article>
+    </main>
 
-        <div class="prose prose-lg max-w-none {% if locale == 'kn' %}kannada-text prose-headings:kannada-text prose-p:kannada-text prose-li:kannada-text{% endif %}">
-            {{ content | safe }}
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="{% if locale == 'kn' %}kannada-text{% endif %}">
+                &copy; 2024 {% if locale == 'en' %}Inka Bengaluru{% else %}ಇಂಕಾ ಬೆಂಗಳೂರು{% endif %}. {% if locale == 'en' %}All rights reserved.{% else %}ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯಂತೆ.{% endif %}
+            </p>
         </div>
-    </div>
-</article>
+    </footer>
+</body>
+</html>

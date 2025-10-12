@@ -1,62 +1,85 @@
 ---
-layout: base.njk
 title: Home
 locale: en
 ---
 
-<!-- Hero Section -->
-<section class="bg-blue-600 text-white py-16 rounded-lg mb-12 fade-in">
-    <div class="text-center">
-        <h2 class="text-4xl font-bold mb-4">Welcome to Inka Bengaluru</h2>
-        <p class="text-xl opacity-90">Your source for the latest news and updates from Greater Bengaluru</p>
-    </div>
-</section>
-
-<!-- Latest News Section -->
-<section class="mb-12">
-    <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-200 pb-2">{{ site.latest_news }}</h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- News Card 1 -->
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
-            <div class="h-48 bg-gray-300">
-                <!-- Image will go here -->
-            </div>
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">New Metro Line Construction Begins in Whitefield</h3>
-                <p class="text-gray-600 mb-4">The much-awaited metro extension to Whitefield has officially commenced construction with a groundbreaking ceremony.</p>
-                <a href="/en/news/metro-whitefield/" class="text-blue-600 font-semibold hover:text-blue-800">
-                    {{ site.read_more }} →
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inka Bengaluru - Latest News from Greater Bengaluru</title>
+    <link href="/src/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-blue-800">Inka Bengaluru</h1>
+                    <p class="text-gray-600 hidden md:block">Latest news and updates from Greater Bengaluru</p>
+                </div>
+                <a href="/kn/" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-200">
+                    ಕನ್ನಡ
                 </a>
             </div>
-        </article>
+            <nav class="mt-4">
+                <ul class="flex space-x-6 overflow-x-auto">
+                    <li><a href="/en/" class="text-blue-600 font-medium border-b-2 border-blue-600">Home</a></li>
+                    <li><a href="/en/news/" class="text-gray-700 hover:text-blue-600 font-medium">News</a></li>
+                    <li><a href="/en/bbmp/" class="text-gray-700 hover:text-blue-600 font-medium">BBMP</a></li>
+                    <li><a href="/en/corporators/" class="text-gray-700 hover:text-blue-600 font-medium">Corporators</a></li>
+                    <li><a href="/en/civic-issues/" class="text-gray-700 hover:text-blue-600 font-medium">Civic Issues</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <!-- News Card 2 -->
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
-            <div class="h-48 bg-gray-300">
-                <!-- Image will go here -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="bg-blue-600 text-white py-16 rounded-lg mb-12 fade-in">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold mb-4">Welcome to Inka Bengaluru</h2>
+                <p class="text-xl opacity-90">Your source for the latest news and updates from Greater Bengaluru</p>
             </div>
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">BBMP Announces New Waste Management Initiative</h3>
-                <p class="text-gray-600 mb-4">The Bruhat Bengaluru Mahanagara Palike has launched a new segregation and recycling program across the city.</p>
-                <a href="/en/news/bbmp-waste-management/" class="text-blue-600 font-semibold hover:text-blue-800">
-                    {{ site.read_more }} →
-                </a>
-            </div>
-        </article>
+        </section>
 
-        <!-- News Card 3 -->
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
-            <div class="h-48 bg-gray-300">
-                <!-- Image will go here -->
+        <!-- Latest News Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-200 pb-2">Latest News</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- News cards will be dynamically generated -->
+                {% for article in collections.news_en | reverse | slice(0, 3) %}
+                <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
+                    {% if article.data.image %}
+                    <div class="h-48 overflow-hidden">
+                        {% image article.data.image, article.data.title, "400px" %}
+                    </div>
+                    {% else %}
+                    <div class="h-48 bg-gray-300 flex items-center justify-center">
+                        <span class="text-gray-600">Image coming soon</span>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">{{ article.data.title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ article.data.summary }}</p>
+                        <a href="{{ article.url }}" class="text-blue-600 font-semibold hover:text-blue-800">
+                            Read More →
+                        </a>
+                    </div>
+                </article>
+                {% endfor %}
             </div>
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Kannada Rajyotsava Celebrations Across Bengaluru</h3>
-                <p class="text-gray-600 mb-4">Various cultural programs and events are being organized throughout the city to celebrate Karnataka's formation day.</p>
-                <a href="/en/news/rajyotsava-celebrations/" class="text-blue-600 font-semibold hover:text-blue-800">
-                    {{ site.read_more }} →
-                </a>
-            </div>
-        </article>
-    </div>
-</section>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Inka Bengaluru. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
