@@ -10,6 +10,7 @@ tags:
   - metro
   - whitefield
   - infrastructure
+
 ---
 
 # Major Infrastructure Milestone for Bengaluru
