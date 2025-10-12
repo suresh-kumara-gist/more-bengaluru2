@@ -51,20 +51,15 @@ permalink: "kn/news/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNum
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {% for article in news %}
                 <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 fade-in">
-                    {% if article.data.image %}
-                    <div class="h-48 overflow-hidden">
-                        {% image article.data.image, article.data.title, "400px" %}
-                    </div>
-                    {% else %}
+                    <!-- Simple image placeholder -->
                     <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
                         <span class="text-white text-lg font-semibold kannada-text">ಇಂಕಾ ಬೆಂಗಳೂರು</span>
                     </div>
-                    {% endif %}
                     
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <time class="text-sm text-gray-500 kannada-text" datetime="{{ article.date | isoDate }}">
-                                {{ article.date | postDateKannada }}
+                                {{ article.date | simpleDateKannada }}
                             </time>
                             {% if article.data.categories %}
                             <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded kannada-text">

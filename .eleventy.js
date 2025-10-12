@@ -57,6 +57,20 @@ function postDateKannada(date) {
   });
 }
 
+// ISO Date filter for datetime attributes
+function isoDate(date) {
+  return new Date(date).toISOString().split('T')[0];
+}
+
+// Simple date for display
+function simpleDate(date) {
+  return new Date(date).toLocaleDateString('en-IN');
+}
+
+function simpleDateKannada(date) {
+  return new Date(date).toLocaleDateString('kn-IN');
+}
+
 // Slug filter for URLs
 function slugify(str) {
   return str
@@ -84,6 +98,9 @@ module.exports = function(eleventyConfig) {
   // Add date filters
   eleventyConfig.addFilter("postDate", postDate);
   eleventyConfig.addFilter("postDateKannada", postDateKannada);
+  eleventyConfig.addFilter("isoDate", isoDate);
+  eleventyConfig.addFilter("simpleDate", simpleDate);
+  eleventyConfig.addFilter("simpleDateKannada", simpleDateKannada);
   eleventyConfig.addFilter("slug", slugify);
 
   // Pass through files
@@ -111,16 +128,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("corporators", function(collection) {
     return collection.getFilteredByGlob("_corporators/*.md");
   });
-
-  // Simple image shortcode for testing
-  eleventyConfig.addShortcode("simpleImage", function(src, alt) {
-    return `<img src="${src}" alt="${alt}" class="w-full h-48 object-cover" loading="lazy">`;
-  });
-
-  // Add custom filters
-  // eleventyConfig.addFilter("isoDate", function(date) {
-  //   return date.toISOString().split('T')[0];
-  // });
 
   // Set input and output directories
   return {

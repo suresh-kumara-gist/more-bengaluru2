@@ -26,7 +26,7 @@ locale: kn
             <div class="p-6">
                 <div class="flex items-center justify-between mb-3">
                     <time class="text-sm text-gray-500 kannada-text" datetime="{{ article.date | isoDate }}">
-                        {{ article.date | postDateKannada }}
+                        {{ article.date | simpleDateKannada }}
                     </time>
                     {% if article.data.categories %}
                     <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded kannada-text">

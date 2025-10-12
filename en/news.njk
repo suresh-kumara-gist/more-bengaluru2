@@ -59,7 +59,7 @@ permalink: "en/news/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNum
                     <div class="p-6">
                         <div class="flex items-center justify-between mb-3">
                             <time class="text-sm text-gray-500" datetime="{{ article.date | isoDate }}">
-                                {{ article.date | postDate }}
+                                {{ article.date | simpleDate }}
                             </time>
                             {% if article.data.categories %}
                             <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
