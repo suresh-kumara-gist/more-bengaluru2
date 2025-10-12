@@ -19,15 +19,9 @@ locale: kn
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for article in collections.news_kn | reverse | slice(0, 3) %}
         <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
-            {% if article.data.image %}
-            <div class="h-48 overflow-hidden">
-                {% image article.data.image, article.data.title, "400px" %}
+            <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                <span class="text-white text-lg font-semibold kannada-text">ಇಂಕಾ ಬೆಂಗಳೂರು</span>
             </div>
-            {% else %}
-            <div class="h-48 bg-gray-300 flex items-center justify-center">
-                <span class="text-gray-600 kannada-text">ಚಿತ್ರ ಶೀಘ್ರದಲ್ಲೇ ಬರಲಿದೆ</span>
-            </div>
-            {% endif %}
             
             <div class="p-6">
                 <div class="flex items-center justify-between mb-3">
@@ -48,6 +42,33 @@ locale: kn
                 </a>
             </div>
         </article>
+        {% else %}
+        <div class="col-span-3 text-center py-12">
+            <p class="text-gray-600 text-lg kannada-text">ಇನ್ನೂ ಯಾವುದೇ ವಾರ್ತಾ ಲೇಖನಗಳಿಲ್ಲ. ಶೀಘ್ರದಲ್ಲಿ ಪರಿಶೀಲಿಸಿ!</p>
+        </div>
         {% endfor %}
+    </div>
+</section>
+
+{% if article.data.image %}
+  {% simpleImage article.data.image, article.data.title %}
+{% endif %}
+
+<!-- Quick Links Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8 border-b-2 border-green-200 pb-2 kannada-text">ತ್ವರಿತ ಲಿಂಕ್ಗಳು</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/kn/news/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold mb-2 text-blue-800 kannada-text">ಎಲ್ಲಾ ವಾರ್ತೆಗಳು</h3>
+            <p class="text-gray-600 kannada-text">ಬೆಂಗಳೂರಿನ ಎಲ್ಲಾ ತಾಜಾ ವಾರ್ತೆಗಳು ಮತ್ತು ನವೀಕರಣಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ</p>
+        </a>
+        <a href="/kn/bbmp/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-green-500">
+            <h3 class="text-xl font-bold mb-2 text-green-800 kannada-text">ಬಿಬಿಎಂಪಿ ನವೀಕರಣಗಳು</h3>
+            <p class="text-gray-600 kannada-text">ಬಿಬಿಎಂಪಿಯಿಂದ ಅಧಿಕೃತ ಘೋಷಣೆಗಳು ಮತ್ತು ನವೀಕರಣಗಳು</p>
+        </a>
+        <a href="/kn/corporators/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-purple-500">
+            <h3 class="text-xl font-bold mb-2 text-purple-800 kannada-text">ನಗರ ಸಭಾಸದರು</h3>
+            <p class="text-gray-600 kannada-text">ನಿಮ್ಮ ಸ್ಥಳೀಯ ನಗರಸಭಾಸದರು ಮತ್ತು ಅವರ ಕೆಲಸದ ಬಗ್ಗೆ ಮಾಹಿತಿ</p>
+        </a>
     </div>
 </section>

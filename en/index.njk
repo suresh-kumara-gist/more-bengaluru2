@@ -19,15 +19,9 @@ locale: en
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for article in collections.news_en | reverse | slice(0, 3) %}
         <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300 fade-in">
-            {% if article.data.image %}
-            <div class="h-48 overflow-hidden">
-                {% image article.data.image, article.data.title, "400px" %}
+            <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <span class="text-white text-lg font-semibold">Inka Bengaluru</span>
             </div>
-            {% else %}
-            <div class="h-48 bg-gray-300 flex items-center justify-center">
-                <span class="text-gray-600">Image coming soon</span>
-            </div>
-            {% endif %}
             
             <div class="p-6">
                 <div class="flex items-center justify-between mb-3">
@@ -48,6 +42,33 @@ locale: en
                 </a>
             </div>
         </article>
+        {% else %}
+        <div class="col-span-3 text-center py-12">
+            <p class="text-gray-600 text-lg">No news articles yet. Check back soon!</p>
+        </div>
         {% endfor %}
+    </div>
+</section>
+
+{% if article.data.image %}
+  {% simpleImage article.data.image, article.data.title %}
+{% endif %}
+
+<!-- Quick Links Section -->
+<section class="mb-12">
+    <h2 class="text-3xl font-bold mb-8 border-b-2 border-blue-200 pb-2">Quick Links</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/en/news/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold mb-2 text-blue-800">All News</h3>
+            <p class="text-gray-600">Browse all the latest news and updates from Bengaluru</p>
+        </a>
+        <a href="/en/bbmp/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-green-500">
+            <h3 class="text-xl font-bold mb-2 text-green-800">BBMP Updates</h3>
+            <p class="text-gray-600">Official announcements and updates from BBMP</p>
+        </a>
+        <a href="/en/corporators/" class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 border-l-4 border-purple-500">
+            <h3 class="text-xl font-bold mb-2 text-purple-800">Corporators</h3>
+            <p class="text-gray-600">Information about your local corporators and their work</p>
+        </a>
     </div>
 </section>
