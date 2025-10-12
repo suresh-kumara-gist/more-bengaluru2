@@ -129,6 +129,11 @@ module.exports = function(eleventyConfig) {
     return collection.getFilteredByGlob("_corporators/*.md");
   });
 
+  // Simple image shortcode for testing
+  eleventyConfig.addShortcode("simpleImage", function(src, alt) {
+    return `<img src="${src}" alt="${alt}" class="w-full h-48 object-cover" loading="lazy">`;
+  });
+
   // Set input and output directories
   return {
     dir: {
