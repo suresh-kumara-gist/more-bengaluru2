@@ -1,92 +1,167 @@
 backend:
-  name: git-gateway
-  branch: main # Your default branch
-
-# Enable editorial workflow for draft/publish states
+  name: github
+  branch: main
+  repo: suresh-kumara-gist/more-bengaluru2
+  base_url: https://suresh-issue-82.dcycleproject.org
+  auth_endpoint: /auth/github/repo/69402cabd927a5554f9da1d5
 publish_mode: editorial_workflow
-
-# Media folder for images
-media_folder: "src/images" # Images will be stored here
-public_folder: "/src/images"
-
-# Site collections (like database tables)
+media_folder: src/images
+public_folder: /src/images
 collections:
-  # Pages collection
-  - name: "pages"
-    label: "Pages"
+  - name: pages
+    label: Pages
     files:
-      - label: "Home Page - English"
-        name: "home_en"
-        file: "en/index.md"
+      - label: Home Page - English
+        name: home_en
+        file: en/index.md
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Locale", name: "locale", widget: "hidden", default: "en" }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Description", name: "hero_description", widget: "text" }
-          - label: "Featured News"
-            name: "featured_news"
-            widget: "list"
+          - label: Title
+            name: title
+            widget: string
+          - label: Layout
+            name: layout
+            widget: hidden
+            default: base.njk
+          - label: Locale
+            name: locale
+            widget: hidden
+            default: en
+          - label: Hero Title
+            name: hero_title
+            widget: string
+          - label: Hero Description
+            name: hero_description
+            widget: text
+          - label: Featured News
+            name: featured_news
+            widget: list
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Link", name: "link", widget: "string" }
-
-      - label: "Home Page - Kannada"
-        name: "home_kn"
-        file: "kn/index.md"
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Image
+                name: image
+                widget: image
+              - label: Link
+                name: link
+                widget: string
+      - label: Home Page - Kannada
+        name: home_kn
+        file: kn/index.md
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
-          - { label: "Locale", name: "locale", widget: "hidden", default: "kn" }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Description", name: "hero_description", widget: "text" }
-          - label: "Featured News"
-            name: "featured_news"
-            widget: "list"
+          - label: Title
+            name: title
+            widget: string
+          - label: Layout
+            name: layout
+            widget: hidden
+            default: base.njk
+          - label: Locale
+            name: locale
+            widget: hidden
+            default: kn
+          - label: Hero Title
+            name: hero_title
+            widget: string
+          - label: Hero Description
+            name: hero_description
+            widget: text
+          - label: Featured News
+            name: featured_news
+            widget: list
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Image", name: "image", widget: "image" }
-              - { label: "Link", name: "link", widget: "string" }
-
-  # News collection
-  - name: "news"
-    label: "News"
-    folder: "_news"
+              - label: Title
+                name: title
+                widget: string
+              - label: Description
+                name: description
+                widget: text
+              - label: Image
+                name: image
+                widget: image
+              - label: Link
+                name: link
+                widget: string
+  - name: news
+    label: News
+    folder: _news
     create: true
-    slug: "{{slug}}"
+    slug: '{{slug}}'
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Language", name: "lang", widget: "select", options: ["en", "kn"] }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Summary", name: "summary", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - label: "Categories"
-        name: "categories"
-        widget: "select"
-        options: ["BBMP", "Development", "Civic Issues", "Events", "Heritage", "General"]
+      - label: Title
+        name: title
+        widget: string
+      - label: Language
+        name: lang
+        widget: select
+        options:
+          - en
+          - kn
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Featured Image
+        name: image
+        widget: image
+      - label: Summary
+        name: summary
+        widget: text
+      - label: Body
+        name: body
+        widget: markdown
+      - label: Categories
+        name: categories
+        widget: select
+        options:
+          - BBMP
+          - Development
+          - Civic Issues
+          - Events
+          - Heritage
+          - General
         multiple: true
-      - label: "Tags"
-        name: "tags"
-        widget: "list"
+      - label: Tags
+        name: tags
+        widget: list
         required: false
-
-  # Corporators collection
-  - name: "corporators"
-    label: "Corporators"
-    folder: "_corporators"
+  - name: corporators
+    label: Corporators
+    folder: _corporators
     create: true
-    slug: "{{slug}}"
+    slug: '{{slug}}'
     fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Name (Kannada)", name: "name_kn", widget: "string", required: false }
-      - { label: "Ward Number", name: "ward", widget: "number" }
-      - { label: "Party", name: "party", widget: "string" }
-      - { label: "Contact Email", name: "email", widget: "string", required: false }
-      - { label: "Phone", name: "phone", widget: "string", required: false }
-      - { label: "Photo", name: "photo", widget: "image", required: false }
-      - { label: "About", name: "about", widget: "markdown" }
-      - { label: "Achievements", name: "achievements", widget: "markdown", required: false }
+      - label: Name
+        name: name
+        widget: string
+      - label: Name (Kannada)
+        name: name_kn
+        widget: string
+        required: false
+      - label: Ward Number
+        name: ward
+        widget: number
+      - label: Party
+        name: party
+        widget: string
+      - label: Contact Email
+        name: email
+        widget: string
+        required: false
+      - label: Phone
+        name: phone
+        widget: string
+        required: false
+      - label: Photo
+        name: photo
+        widget: image
+        required: false
+      - label: About
+        name: about
+        widget: markdown
+      - label: Achievements
+        name: achievements
+        widget: markdown
+        required: false
