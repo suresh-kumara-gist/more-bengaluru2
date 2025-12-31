@@ -3,7 +3,7 @@ backend:
   branch: main
   repo: suresh-kumara-gist/more-bengaluru2
   base_url: https://suresh-issue-82.dcycleproject.org
-  auth_endpoint: /auth/github/repo/69402cabd927a5554f9da1d5
+  auth_endpoint: /auth/github/repo/69556fb7a1e4c918b851f701
 publish_mode: editorial_workflow
 media_folder: src/images
 public_folder: /src/images
